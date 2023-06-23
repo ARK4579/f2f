@@ -1,11 +1,11 @@
-class FigmaFileJsonStyle {
+class FigmaFileStyle {
   final String? key;
   final String? name;
   final String? styleType;
   final bool? remote;
   final String? description;
 
-  FigmaFileJsonStyle({
+  FigmaFileStyle({
     this.key,
     this.name,
     this.styleType,
@@ -13,8 +13,8 @@ class FigmaFileJsonStyle {
     this.description,
   });
 
-  factory FigmaFileJsonStyle.fromJson(Map<String, dynamic> json) {
-    return FigmaFileJsonStyle(
+  factory FigmaFileStyle.fromJson(Map<String, dynamic> json) {
+    return FigmaFileStyle(
       key: json['key'],
       name: json['name'],
       styleType: json['styleType'],

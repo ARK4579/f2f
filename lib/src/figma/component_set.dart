@@ -1,18 +1,18 @@
-class FigmaFileJsonComponentSet {
+class FigmaFileComponentSet {
   final String? key;
   final String? name;
   final String? description;
   final bool? remote;
 
-  FigmaFileJsonComponentSet({
+  FigmaFileComponentSet({
     this.key,
     this.name,
     this.description,
     this.remote,
   });
 
-  factory FigmaFileJsonComponentSet.fromJson(Map<String, dynamic> json) {
-    return FigmaFileJsonComponentSet(
+  factory FigmaFileComponentSet.fromJson(Map<String, dynamic> json) {
+    return FigmaFileComponentSet(
       key: json['key'],
       name: json['name'],
       description: json['description'],

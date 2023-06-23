@@ -1,17 +1,17 @@
-class FigmaFileJsonNodeBoundVariable {
+class FigmaFileNodeBoundVariable {
   final String? id;
   final String? type;
   final String? variableName;
 
-  const FigmaFileJsonNodeBoundVariable({
+  const FigmaFileNodeBoundVariable({
     this.id,
     this.type,
     this.variableName,
   });
 
-  factory FigmaFileJsonNodeBoundVariable.fromJson(
+  factory FigmaFileNodeBoundVariable.fromJson(
       String variableName, Map<String, dynamic> json) {
-    return FigmaFileJsonNodeBoundVariable(
+    return FigmaFileNodeBoundVariable(
       id: json['id'],
       type: json['type'],
       variableName: variableName,

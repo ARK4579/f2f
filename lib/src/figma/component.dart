@@ -1,4 +1,4 @@
-class FigmaFileJsonComponent {
+class FigmaFileComponent {
   final String? key;
   final String? name;
   final String? description;
@@ -6,7 +6,7 @@ class FigmaFileJsonComponent {
   final String? componentSetId;
   final List<String>? documentationLinks;
 
-  FigmaFileJsonComponent({
+  FigmaFileComponent({
     this.key,
     this.name,
     this.description,
@@ -15,8 +15,8 @@ class FigmaFileJsonComponent {
     this.documentationLinks,
   });
 
-  factory FigmaFileJsonComponent.fromJson(Map<String, dynamic> json) {
-    return FigmaFileJsonComponent(
+  factory FigmaFileComponent.fromJson(Map<String, dynamic> json) {
+    return FigmaFileComponent(
       key: json['key'],
       name: json['name'],
       description: json['description'],

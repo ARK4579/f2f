@@ -1,16 +1,16 @@
 import 'package:f2f/f2f.dart';
 
-class FigmaFileJsonNode {
+class FigmaFileNode {
   final String? id;
   final String? name;
   final String? type;
   final String? scrollBehavior;
   final String? blendMode;
-  final List<FigmaFileJsonNode>? children;
-  final Map<String, FigmaFileJsonNodeBoundVariable>? boundVariables;
+  final List<FigmaFileNode>? children;
+  final Map<String, FigmaFileNodeBoundVariable>? boundVariables;
   final String? characters;
 
-  const FigmaFileJsonNode({
+  const FigmaFileNode({
     this.id,
     this.name,
     this.type,
@@ -21,8 +21,8 @@ class FigmaFileJsonNode {
     this.characters,
   });
 
-  factory FigmaFileJsonNode.fromJson(Map<String, dynamic> json) {
-    return FigmaFileJsonNode(
+  factory FigmaFileNode.fromJson(Map<String, dynamic> json) {
+    return FigmaFileNode(
       id: json['id'],
       name: json['name'],
       type: json['type'],
@@ -30,13 +30,13 @@ class FigmaFileJsonNode {
       blendMode: json['blendMode'],
       children: json['children'] != null
           ? (json['children'] as List<dynamic>)
-              .map((e) => FigmaFileJsonNode.fromJson(e))
+              .map((e) => FigmaFileNode.fromJson(e))
               .toList()
           : null,
       boundVariables: json['boundVariables'] != null
           ? (json['boundVariables'] as Map<String, dynamic>).map(
               (key, value) => MapEntry(
-                  key, FigmaFileJsonNodeBoundVariable.fromJson(key, value)),
+                  key, FigmaFileNodeBoundVariable.fromJson(key, value)),
             )
           : null,
       characters: json['characters'],

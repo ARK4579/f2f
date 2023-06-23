@@ -1,6 +1,6 @@
 import 'package:f2f/f2f.dart';
 
-class FigmaFileJson {
+class FigmaFile {
   final String? name;
   final String? lastModified;
   final String? thumbnailUrl;
@@ -9,11 +9,11 @@ class FigmaFileJson {
   final String? editorType;
   final String? linkAccess;
   final int? schemaVersion;
-  final Map<String, FigmaFileJsonStyle>? styles;
-  final Map<String, FigmaFileJsonComponentSet>? componentSets;
-  final Map<String, FigmaFileJsonComponent>? components;
+  final Map<String, FigmaFileStyle>? styles;
+  final Map<String, FigmaFileComponentSet>? componentSets;
+  final Map<String, FigmaFileComponent>? components;
 
-  FigmaFileJson({
+  FigmaFile({
     this.name,
     this.lastModified,
     this.thumbnailUrl,
@@ -27,16 +27,16 @@ class FigmaFileJson {
     this.components,
   });
 
-  factory FigmaFileJson.fromFile(String filePath) {
-    return FigmaFileJson.fromJson(
+  factory FigmaFile.fromFile(String filePath) {
+    return FigmaFile.fromJson(
       Map<String, dynamic>.from(
         jsonDecode(File(filePath).readAsStringSync()),
       ),
     );
   }
 
-  factory FigmaFileJson.fromJson(Map<String, dynamic> json) {
-    return FigmaFileJson(
+  factory FigmaFile.fromJson(Map<String, dynamic> json) {
+    return FigmaFile(
       name: json['name'],
       lastModified: json['lastModified'],
       thumbnailUrl: json['thumbnailUrl'],
@@ -47,19 +47,18 @@ class FigmaFileJson {
       schemaVersion: json['schemaVersion'],
       styles: json['styles'] != null
           ? (json['styles'] as Map<String, dynamic>).map(
-              (key, value) => MapEntry(key, FigmaFileJsonStyle.fromJson(value)),
+              (key, value) => MapEntry(key, FigmaFileStyle.fromJson(value)),
             )
           : null,
       componentSets: json['componentSets'] != null
           ? (json['componentSets'] as Map<String, dynamic>).map(
               (key, value) =>
-                  MapEntry(key, FigmaFileJsonComponentSet.fromJson(value)),
+                  MapEntry(key, FigmaFileComponentSet.fromJson(value)),
             )
           : null,
       components: json['components'] != null
           ? (json['components'] as Map<String, dynamic>).map(
-              (key, value) =>
-                  MapEntry(key, FigmaFileJsonComponent.fromJson(value)),
+              (key, value) => MapEntry(key, FigmaFileComponent.fromJson(value)),
             )
           : null,
     );
