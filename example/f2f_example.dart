@@ -1,6 +1,7 @@
 import 'package:f2f/f2f.dart';
 
 void main() {
-  var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
+  var awesome = SureAwesome();
+  print('isAwesome: ${awesome.isAwesome}');
+  print('areSureAboutAwesome: ${awesome.areSureAboutAwesome}');
 }
