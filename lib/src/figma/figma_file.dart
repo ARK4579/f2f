@@ -1,85 +1,5 @@
 import 'package:f2f/f2f.dart';
 
-class FigmaFileComponents {
-  final String? key;
-  final String? name;
-  final String? description;
-  final bool? remote;
-  final String? componentSetId;
-  final List<String>? documentationLinks;
-
-  FigmaFileComponents({
-    this.key,
-    this.name,
-    this.description,
-    this.remote,
-    this.componentSetId,
-    this.documentationLinks,
-  });
-
-  factory FigmaFileComponents.fromJson(Map<String, dynamic> json) {
-    return FigmaFileComponents(
-      key: json['key'],
-      name: json['name'],
-      description: json['description'],
-      remote: json['remote'],
-      componentSetId: json['componentSetId'],
-      documentationLinks: json['documentationLinks'] != null
-          ? List<String>.from(json['documentationLinks'])
-          : null,
-    );
-  }
-}
-
-class FigmaFileComponentSets {
-  final String? key;
-  final String? name;
-  final String? description;
-  final bool? remote;
-
-  FigmaFileComponentSets({
-    this.key,
-    this.name,
-    this.description,
-    this.remote,
-  });
-
-  factory FigmaFileComponentSets.fromJson(Map<String, dynamic> json) {
-    return FigmaFileComponentSets(
-      key: json['key'],
-      name: json['name'],
-      description: json['description'],
-      remote: json['remote'],
-    );
-  }
-}
-
-class FigmaFileJsonStyle {
-  final String? key;
-  final String? name;
-  final String? styleType;
-  final bool? remote;
-  final String? description;
-
-  FigmaFileJsonStyle({
-    this.key,
-    this.name,
-    this.styleType,
-    this.remote,
-    this.description,
-  });
-
-  factory FigmaFileJsonStyle.fromJson(Map<String, dynamic> json) {
-    return FigmaFileJsonStyle(
-      key: json['key'],
-      name: json['name'],
-      styleType: json['styleType'],
-      remote: json['remote'],
-      description: json['description'],
-    );
-  }
-}
-
 class FigmaFileJson {
   final String? name;
   final String? lastModified;
@@ -90,8 +10,8 @@ class FigmaFileJson {
   final String? linkAccess;
   final int? schemaVersion;
   final Map<String, FigmaFileJsonStyle>? styles;
-  final Map<String, FigmaFileComponentSets>? componentSets;
-  final Map<String, FigmaFileComponents>? components;
+  final Map<String, FigmaFileJsonComponentSet>? componentSets;
+  final Map<String, FigmaFileJsonComponent>? components;
 
   FigmaFileJson({
     this.name,
@@ -133,13 +53,13 @@ class FigmaFileJson {
       componentSets: json['componentSets'] != null
           ? (json['componentSets'] as Map<String, dynamic>).map(
               (key, value) =>
-                  MapEntry(key, FigmaFileComponentSets.fromJson(value)),
+                  MapEntry(key, FigmaFileJsonComponentSet.fromJson(value)),
             )
           : null,
       components: json['components'] != null
           ? (json['components'] as Map<String, dynamic>).map(
               (key, value) =>
-                  MapEntry(key, FigmaFileComponents.fromJson(value)),
+                  MapEntry(key, FigmaFileJsonComponent.fromJson(value)),
             )
           : null,
     );
