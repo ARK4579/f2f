@@ -20,8 +20,11 @@ TODO: List what your package can do. Maybe include images, gifs, or videos.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+1. `cd lib/src/` and make a `tmp` folder: `mkdir tmp`
+2. call Figma REST API `curl -H 'X-FIGMA-TOKEN: <aut_token>' '<file_id>' > test1.json`
+    * if you don't have auth token you can easily get it by visiting `https://www.figma.com/developers/api#get-files-endpoint` and clicking on get auth token
+    * if you want to get file_id, open file browser in figma, find file, right click and select `Copy Link`. Then just copy the id from the url.
+3. `dart run`
 
 ## Usage
 
