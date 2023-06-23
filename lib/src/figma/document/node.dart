@@ -7,7 +7,7 @@ class FigmaFileNode {
   final String? scrollBehavior;
   final String? blendMode;
   final List<FigmaFileNode>? children;
-  final Map<String, FigmaFileNodeBoundVariable>? boundVariables;
+  final List<FigmaFileNodeBoundVariable>? boundVariables;
   final String? characters;
 
   const FigmaFileNode({
@@ -34,12 +34,27 @@ class FigmaFileNode {
               .toList()
           : null,
       boundVariables: json['boundVariables'] != null
-          ? (json['boundVariables'] as Map<String, dynamic>).map(
-              (key, value) => MapEntry(
-                  key, FigmaFileNodeBoundVariable.fromJson(key, value)),
-            )
+          ? (json['boundVariables'] as Map<String, dynamic>)
+              .entries
+              .map((e) => FigmaFileNodeBoundVariable.fromJson(e.key, e.value))
+              .toList()
           : null,
       characters: json['characters'],
     );
+  }
+
+  // to Json
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'type': type,
+      'scrollBehavior': scrollBehavior,
+      'blendMode': blendMode,
+      'children': children,
+      'boundVariables':
+          boundVariables?.map((e) => MapEntry(e.variableName, e.toJson())),
+      'characters': characters,
+    };
   }
 }

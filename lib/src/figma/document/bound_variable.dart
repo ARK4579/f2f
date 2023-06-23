@@ -17,4 +17,12 @@ class FigmaFileNodeBoundVariable {
       variableName: variableName,
     );
   }
+
+  //  to json
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'type': type,
+    };
+  }
 }

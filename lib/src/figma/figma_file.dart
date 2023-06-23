@@ -9,9 +9,9 @@ class FigmaFile {
   final String? editorType;
   final String? linkAccess;
   final int? schemaVersion;
-  final Map<String, FigmaFileStyle>? styles;
-  final Map<String, FigmaFileComponentSet>? componentSets;
-  final Map<String, FigmaFileComponent>? components;
+  final List<FigmaFileStyle>? styles;
+  final List<FigmaFileComponentSet>? componentSets;
+  final List<FigmaFileComponent>? components;
 
   FigmaFile({
     this.name,
@@ -46,22 +46,41 @@ class FigmaFile {
       linkAccess: json['linkAccess'],
       schemaVersion: json['schemaVersion'],
       styles: json['styles'] != null
-          ? (json['styles'] as Map<String, dynamic>).map(
-              (key, value) => MapEntry(key, FigmaFileStyle.fromJson(value)),
-            )
+          ? (json['styles'] as Map<String, dynamic>)
+              .entries
+              .map((e) => FigmaFileStyle.fromJson(e.key, e.value))
+              .toList()
           : null,
       componentSets: json['componentSets'] != null
-          ? (json['componentSets'] as Map<String, dynamic>).map(
-              (key, value) =>
-                  MapEntry(key, FigmaFileComponentSet.fromJson(value)),
-            )
+          ? (json['componentSets'] as Map<String, dynamic>)
+              .entries
+              .map((e) => FigmaFileComponentSet.fromJson(e.key, e.value))
+              .toList()
           : null,
       components: json['components'] != null
-          ? (json['components'] as Map<String, dynamic>).map(
-              (key, value) => MapEntry(key, FigmaFileComponent.fromJson(value)),
-            )
+          ? (json['components'] as Map<String, dynamic>)
+              .entries
+              .map((e) => FigmaFileComponent.fromJson(e.key, e.value))
+              .toList()
           : null,
     );
+  }
+
+  // to json
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'lastModified': lastModified,
+      'thumbnailUrl': thumbnailUrl,
+      'version': version,
+      'role': role,
+      'editorType': editorType,
+      'linkAccess': linkAccess,
+      'schemaVersion': schemaVersion,
+      'styles': styles?.map((e) => MapEntry(e.key, e.toJson())),
+      'componentSets': componentSets?.map((e) => MapEntry(e.key, e.toJson())),
+      'components': components?.map((e) => MapEntry(e.key, e.toJson())),
+    };
   }
 
   void printFile() {

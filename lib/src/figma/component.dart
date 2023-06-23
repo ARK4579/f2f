@@ -1,4 +1,5 @@
 class FigmaFileComponent {
+  final String? id;
   final String? key;
   final String? name;
   final String? description;
@@ -7,6 +8,7 @@ class FigmaFileComponent {
   final List<String>? documentationLinks;
 
   FigmaFileComponent({
+    this.id,
     this.key,
     this.name,
     this.description,
@@ -15,8 +17,9 @@ class FigmaFileComponent {
     this.documentationLinks,
   });
 
-  factory FigmaFileComponent.fromJson(Map<String, dynamic> json) {
+  factory FigmaFileComponent.fromJson(String id, Map<String, dynamic> json) {
     return FigmaFileComponent(
+      id: id,
       key: json['key'],
       name: json['name'],
       description: json['description'],
@@ -26,5 +29,18 @@ class FigmaFileComponent {
           ? List<String>.from(json['documentationLinks'])
           : null,
     );
+  }
+
+  // to json
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'key': key,
+      'name': name,
+      'description': description,
+      'remote': remote,
+      'componentSetId': componentSetId,
+      'documentationLinks': documentationLinks,
+    };
   }
 }
